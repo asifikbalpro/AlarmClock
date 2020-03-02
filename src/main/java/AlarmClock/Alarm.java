@@ -25,6 +25,10 @@ public class Alarm extends javax.swing.JFrame {
     Timer updateTimer;
     int DELAY = 100;
     
+    private int hour;
+    private int minute;
+    private static boolean state = true;
+    
    
     
     
@@ -43,6 +47,7 @@ public class Alarm extends javax.swing.JFrame {
                clock_time.setText(formatedTimeString);
               
                
+               
             }
         });
         updateTimer.start();
@@ -58,22 +63,16 @@ public class Alarm extends javax.swing.JFrame {
     private void initComponents() {
 
         clock_time = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jHH = new javax.swing.JTextField();
         jMM = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jSet = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         clock_time.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         clock_time.setText("00:00:00");
-
-        jButton1.setText("Set Alarm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jHH.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jHH.setText("0");
@@ -86,73 +85,98 @@ public class Alarm extends javax.swing.JFrame {
         jMM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jMM.setText("0");
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("note");
+
+        jSet.setText("set Alarm");
+        jSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSetActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("number must need to be the same");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(clock_time)
-                            .addGap(234, 234, 234))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(331, 331, 331)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clock_time)
+                        .addGap(234, 234, 234))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(286, 286, 286)
-                .addComponent(jHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(257, 257, 257))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(jHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jSet)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clock_time, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(clock_time, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jHH))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(21, 21, 21)
+                .addComponent(jSet)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        int hour24 = LocalDateTime.now().getHour();
-        int minute = LocalDateTime.now().getMinute();
-        int hour = hour24;
-        if (hour24 > 12) {
-            hour = (hour24-12);
-        }
- 
-        // this is where all the problem
-//        String mm = jMM.getText();
-        int mmm = Integer.getInteger(jMM.getText());
-        int mmmm= Integer.parseInt(jMM.getText());
-        int a = 0;
-        jHH.setText(""+mmm);
-        jLabel1.setText(" "+ a);
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHHActionPerformed
         // TODO add your handling code here:        
     }//GEN-LAST:event_jHHActionPerformed
+
+    private void jSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetActionPerformed
+        // TODO add your handling code here:
+        state = true;
+        Thread t = new Thread(){
+            public void run(){
+                for(;;){
+                    if(state == true){
+                        try {
+                            if(LocalDateTime.now().getHour() > 12){
+                                hour = LocalDateTime.now().getHour() - 12;
+                            }
+                            minute = LocalDateTime.now().getMinute();
+                            
+                            int hh = Integer.parseInt(jHH.getText());
+                            int mm = Integer.parseInt(jMM.getText());
+                            
+                            if(hour == hh && minute == mm){ 
+                                jLabel1.setText("alarm");
+                                break;
+                            } 
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+        };
+        t.start();
+    }//GEN-LAST:event_jSetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,9 +185,24 @@ public class Alarm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel clock_time;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTextField jHH;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jMM;
+    private javax.swing.JButton jSet;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the hour
+     */
+    public int getHour() {
+        return hour;
+    }
+
+    /**
+     * @param hour the hour to set
+     */
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
 }
