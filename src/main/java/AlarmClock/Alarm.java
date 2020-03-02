@@ -139,7 +139,7 @@ public class Alarm extends javax.swing.JFrame {
             hour = (hour24-12);
         }
  
-                
+        // this is where all the problem
 //        String mm = jMM.getText();
         int mmm = Integer.getInteger(jMM.getText());
         int mmmm= Integer.parseInt(jMM.getText());
