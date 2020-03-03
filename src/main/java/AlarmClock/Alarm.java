@@ -8,9 +8,12 @@ package AlarmClock;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -28,6 +31,8 @@ public class Alarm extends javax.swing.JFrame {
     private int hour;
     private int minute;
     private static boolean state = true;
+    
+    int time = 0;
     
    
     
@@ -67,6 +72,7 @@ public class Alarm extends javax.swing.JFrame {
         jMM = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jSet = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +80,7 @@ public class Alarm extends javax.swing.JFrame {
         clock_time.setText("00:00:00");
 
         jHH.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jHH.setText("0");
+        jHH.setText("00");
         jHH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jHHActionPerformed(evt);
@@ -82,8 +88,9 @@ public class Alarm extends javax.swing.JFrame {
         });
 
         jMM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jMM.setText("0");
+        jMM.setText("00");
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("note");
 
         jSet.setText("set Alarm");
@@ -93,25 +100,32 @@ public class Alarm extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jHH, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(349, 349, 349))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clock_time)
-                    .addComponent(jSet))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jHH)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jMM)
+                                .addGap(49, 49, 49)))
+                        .addGap(349, 349, 349))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clock_time)
+                            .addComponent(jSet))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +133,16 @@ public class Alarm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(clock_time, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jMM)
-                    .addComponent(jHH, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jHH)
+                    .addComponent(jMM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSet)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -139,8 +155,34 @@ public class Alarm extends javax.swing.JFrame {
     private void jSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetActionPerformed
         // TODO add your handling code here:
         System.out.println("alarm set clicked");
+        
+        int hh = Integer.parseInt(jHH.getText());
+        int mm = Integer.parseInt(jMM.getText());
+        
+        int h1 = LocalDateTime.now().getHour();
+        int m1 = LocalDateTime.now().getMinute();
+        int ss = LocalDateTime.now().getSecond();
+        
+        String time1 = hh+":"+mm+":00";
+        String time2 = h1+":"+m1+":"+ss;
+        
+        SimpleDateFormat format = new SimpleDateFormat();
+        /**
+         * TODO: calculate the time and convert into a sec.
+         * and use that variable on sleep();
+         */
+        Date date1 = format.parse(time1); // this is one of the problem
+        Date date2 = format.parse(time2); // problem
+        
+        long diff = date2.getTime() - date1.getTime();
+
+        System.out.println(time1 +" "+ time2);
+
+        System.out.println("alarm has set "+ hh + ":"+ mm);
+        
+        
+        
         state = true;
-        System.out.println("alarm has set");
         Thread t = new Thread(){
             public void run(){
                 for(;;){
@@ -151,10 +193,7 @@ public class Alarm extends javax.swing.JFrame {
                                 hour = LocalDateTime.now().getHour() - 12;
                             }
                             minute = LocalDateTime.now().getMinute();
-                            
-                            int hh = Integer.parseInt(jHH.getText());
-                            int mm = Integer.parseInt(jMM.getText());
-                            
+
                             if(hour == hh && minute == mm){ 
                                 jLabel1.setText("alarm");
                                 System.out.println("alarming");
@@ -178,6 +217,7 @@ public class Alarm extends javax.swing.JFrame {
     private javax.swing.JLabel clock_time;
     private javax.swing.JTextField jHH;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jMM;
     private javax.swing.JButton jSet;
     // End of variables declaration//GEN-END:variables
@@ -195,4 +235,6 @@ public class Alarm extends javax.swing.JFrame {
     public void setHour(int hour) {
         this.hour = hour;
     }
+    
+
 }
