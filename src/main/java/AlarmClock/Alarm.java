@@ -159,24 +159,35 @@ public class Alarm extends javax.swing.JFrame {
         int hh = Integer.parseInt(jHH.getText());
         int mm = Integer.parseInt(jMM.getText());
         
-        int h1 = LocalDateTime.now().getHour();
-        int m1 = LocalDateTime.now().getMinute();
-        int ss = LocalDateTime.now().getSecond();
+        LocalDateTime now = LocalDateTime.now(); // 
+        int h1 = now.getHour();
+        int m1 = now.getMinute();
+        int ss = now.getSecond();
+        System.out.println("Now full " + now.toString());
+        int now_in_seconds = Converter.get_seconds(now);
+        System.out.println("Now " + now_in_seconds);
+        int target_in_seconds = hh * 3600 + mm * 60;
+        if (h1 > 12){
+            // pm
+            target_in_seconds += 12*3600;
+        }
+        System.out.println("To " + target_in_seconds);
+        int time_remaining = target_in_seconds - now_in_seconds;
+        System.out.println("Time to sleep " + time_remaining);
+//        String time1 = hh+":"+mm+":00";
+//        String time2 = h1+":"+m1+":"+ss;
+//        
+//        SimpleDateFormat format = new SimpleDateFormat();
+//        /**
+//         * TODO: calculate the time and convert into a sec.
+//         * and use that variable on sleep();
+//         */
+//        Date date1 = format.parse(time1); // this is one of the problem
+//        Date date2 = format.parse(time2); // problem
         
-        String time1 = hh+":"+mm+":00";
-        String time2 = h1+":"+m1+":"+ss;
-        
-        SimpleDateFormat format = new SimpleDateFormat();
-        /**
-         * TODO: calculate the time and convert into a sec.
-         * and use that variable on sleep();
-         */
-        Date date1 = format.parse(time1); // this is one of the problem
-        Date date2 = format.parse(time2); // problem
-        
-        long diff = date2.getTime() - date1.getTime();
+//        long diff = date2.getTime() - date1.getTime();
 
-        System.out.println(time1 +" "+ time2);
+//        System.out.println(time1 +" "+ time2);
 
         System.out.println("alarm has set "+ hh + ":"+ mm);
         
@@ -188,7 +199,7 @@ public class Alarm extends javax.swing.JFrame {
                 for(;;){
                     if(state == true){
                         try {
-                            sleep(1);
+                            sleep(time_remaining); // sleep for long time for saving processing power
                             if(LocalDateTime.now().getHour() > 12){
                                 hour = LocalDateTime.now().getHour() - 12;
                             }
@@ -200,6 +211,7 @@ public class Alarm extends javax.swing.JFrame {
                                 break;
                             } 
                         } catch (Exception e) {
+                            System.out.println("Exception " + e.toString());
                         }
                     }
                 }
