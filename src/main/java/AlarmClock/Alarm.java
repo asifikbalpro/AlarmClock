@@ -200,6 +200,7 @@ public class Alarm extends javax.swing.JFrame {
                     if(state == true){
                         try {
                             sleep(time_remaining); // sleep for long time for saving processing power
+                            // TODO. failsafe. if the program needs to sleep more then it sould not be more than 1 sec
                             if(LocalDateTime.now().getHour() > 12){
                                 hour = LocalDateTime.now().getHour() - 12;
                             }
