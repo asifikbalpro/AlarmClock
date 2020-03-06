@@ -16,6 +16,7 @@ public class Main {
      */
     
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -41,10 +42,19 @@ public class Main {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Alarm().setVisible(true);
             }
         });
+    }
+
+    private static void Alarm(String dProjectsNetbeansAlarmClockmusicalarm_clo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void alarmTune(String dProjectsNetbeansAlarmClockmusicalarm_clo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
