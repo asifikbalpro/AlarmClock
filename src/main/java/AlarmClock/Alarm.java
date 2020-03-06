@@ -87,6 +87,7 @@ public class Alarm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(300, 400));
         getContentPane().setLayout(null);
 
         clock_time.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
@@ -120,6 +121,7 @@ public class Alarm extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asif\\Pictures\\pexels-photo-255379.jpeg")); // NOI18N
         jLabel3.setText("jLabel3");
+        jLabel3.setMaximumSize(getMaximumSize());
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 220, 280);
 
