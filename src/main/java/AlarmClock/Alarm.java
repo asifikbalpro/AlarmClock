@@ -84,14 +84,20 @@ public class Alarm extends javax.swing.JFrame {
         jSet = new javax.swing.JButton();
         jHH = new javax.swing.JSpinner();
         jMM = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         clock_time.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         clock_time.setText("00:00:00");
+        getContentPane().add(clock_time);
+        clock_time.setBounds(20, 20, 176, 59);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("note");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 173, 165, 25);
 
         jSet.setText("set Alarm");
         jSet.addActionListener(new java.awt.event.ActionListener() {
@@ -99,49 +105,23 @@ public class Alarm extends javax.swing.JFrame {
                 jSetActionPerformed(evt);
             }
         });
+        getContentPane().add(jSet);
+        jSet.setBounds(62, 144, 77, 23);
 
         jHH.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jHH.setModel(new javax.swing.SpinnerNumberModel(0, 0, 12, 1));
+        getContentPane().add(jHH);
+        jHH.setBounds(30, 90, 71, 48);
 
         jMM.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jMM.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        getContentPane().add(jMM);
+        jMM.setBounds(107, 90, 69, 48);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clock_time)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jHH, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jSet)))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clock_time, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jMM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jHH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Asif\\Pictures\\pexels-photo-255379.jpeg")); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 220, 280);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -249,6 +229,7 @@ public class Alarm extends javax.swing.JFrame {
     private javax.swing.JLabel clock_time;
     private javax.swing.JSpinner jHH;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSpinner jMM;
     private javax.swing.JButton jSet;
     // End of variables declaration//GEN-END:variables
